@@ -18,5 +18,5 @@ summary(df)
 ![alt text](../02\ Visualizations/Plot3.png)
 ![alt text](../02\ Visualizations/Plot4.png)
 ![alt text](../02\ Visualizations/Plot5.png)
-You can also embed plots, for example:
+
 
