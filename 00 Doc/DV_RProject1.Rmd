@@ -2,13 +2,16 @@
 title: "DV_RProject1"
 output: html_document
 ---
+ This is the R Markdown Document for Dr. Cannata's Data Visualization class' Project 1.  The first thing I did was create a private Git Repository called DV_RProject1 and clone it into my Data Visualization folder.  I then created an RStudio project and the subfolders '00 Doc', '01 Data', and '02 Visualizations'.  In '00 Doc' I created this Rmd file and started writing about following instructions.  I then copied and pasted the SQL query given to us by Dr. Cannata into my Oracle Database query builder to create the Titanic Data Tables. 
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r}
-summary(cars)
+load("../01\ Data/DataFrame.RData")
+head(df)
+summary(df)
+load("../02\ Visualizations/Plot1.png")
+
 ```
 
 You can also embed plots, for example:
