@@ -10,14 +10,13 @@ output: html_document
 load("../01\ Data/DataFrame.RData")
 head(df)
 summary(df)
-load("../02\ Visualizations/Plot1.png")
 
 ```
 
+![alt text](../02\ Visualizations/Plot1.png)
+![alt text](../02\ Visualizations/Plot2.png)
+![alt text](../02\ Visualizations/Plot3.png)
+![alt text](../02\ Visualizations/Plot4.png)
+![alt text](../02\ Visualizations/Plot5.png)
 You can also embed plots, for example:
 
-```{r, echo=FALSE}
-plot(cars)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
