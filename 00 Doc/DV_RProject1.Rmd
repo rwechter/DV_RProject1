@@ -2,139 +2,26 @@
 title: "DV_RProject1"
 output: html_document
 ---
- This is the HTML page for Dr. Cannata's Data Visualization class' Project 1.  The first thing I did was create a private Git Repository called DV_RProject1 and clone it into my Data Visualization folder.  I then created an RStudio project and the subfolders '00 Doc', '01 Data', and '02 Visualizations'.  In '00 Doc' I created the Rmd file that outputted this html page and started writing about following instructions.  I then copied and pasted the SQL query given to us by Dr. Cannata into my Oracle Database query builder to create the Titanic Data Tables. After using the code given to us in "Titanic Analysis.R" to create and save a dataframe in RStudio, I figured out that we have to load the dataframe from a directory or URL because when we Knit the Rmd file, the html file it outputs does not interact with RStudio.
+ This is the HTML page for Dr. Cannata's Data Visualization class' Project 1.  
+ 
+ 1. The first thing I did was create a private Git Repository called DV_RProject1 and clone it into my Data Visualization folder.  
+ 
+ 2. I then created an RStudio project and the subfolders '00 Doc', '01 Data', and '02 Visualizations'.  
+ 3. In '00 Doc' I created the Rmd file that outputted this html page and started writing about following instructions.  
+
+ 4. I then copied and pasted the SQL query given to us by Dr. Cannata into my Oracle Database query builder to create the Titanic Data Tables. 
+ 
+ 5. I then loaded the required packages and copied the SQL statement given in Titanic Analysis.R into my DataFrame.R file 
+ 
+ 6. Lastly, I manipulated the r code ggplot function to create the 6 six plots.
+ 
+ 7.  For my unique plot I plotted PASSENGER ID and TICKET NUMBER because I thought that they would be correlated.  I.E. John bought ticket number 1 and is passenger number 1 but I was wrong.
 
 
 
-```{r}
-require("ggplot2")
-load("../01\ Data/DataFrame.RData")
-head(df)
-summary(df)
-ggplot() + 
-  coord_cartesian() + 
-  scale_x_continuous() +
-  scale_y_continuous() +
-  labs(title='Titanic') +
-  labs(x="PASSENGER ID", y="TICKET NUMBER") +
-  layer(data=subset(df,SEX != "null"), 
-        mapping=aes(x=as.numeric(PASSENGERID), y=as.numeric(TICKET), color=SEX), 
-        stat="identity", 
-        stat_params=list(), 
-        geom="point",
-        geom_params=list(), 
-        position=position_identity()
-        #position=position_jitter(width=0.3, height=0)
-  ) 
 
+```{r} 
+source("../01\ Data/DataFrame.R", echo = TRUE)
 ```
-The SQL code did not change for any of the plots because it would be inefficient to reload the database each time.  I loaded the entire db the first time and changed the 'data' parameter of the 'layer' component of the 'ggplot' function to use only the relevant subsets of the data for each plot.
-
-###Unique Plot
-![alt text](../02\ Visualizations/Plot0.png)
 
 
-
-
-I thought there would be a correlation between ticket number and passenger id.  I was wrong.
-
-###Plot 1
-![alt text](../02\ Visualizations/Plot1.png)
-
-ggplot() + 
-  coord_cartesian() + 
-  scale_x_continuous() +
-  scale_y_continuous() +
-  #facet_grid(PCLASS~SURVIVED, labeller=label_both) +
-  labs(title='Titanic') +
-  labs(x="Age", y=paste("FARE")) +
-  layer(data=df, 
-        mapping=aes(x=as.numeric(as.character(AGE)), y=as.numeric(as.character(FARE)), color=SEX), 
-        stat="identity", 
-        stat_params=list(), 
-        geom="point",
-        geom_params=list(), 
-        #position=position_identity()
-        position=position_jitter(width=0.3, height=0)
-  )
-
-
-###Plot 2
-![alt text](../02\ Visualizations/Plot2.png)
-
-ggplot() + 
-  coord_cartesian() + 
-  scale_x_continuous() +
-  scale_y_continuous() +
-  #facet_grid(PCLASS~SURVIVED, labeller=label_both) +
-  labs(title='Titanic') +
-  labs(x="Age", y=paste("FARE")) +
-  layer(data=subset(df,SEX != "null"), 
-        mapping=aes(x=as.numeric(as.character(AGE)), y=as.numeric(as.character(FARE)), color=SEX), 
-        stat="identity", 
-        stat_params=list(), 
-        geom="point",
-        geom_params=list(), 
-        #position=position_identity()
-        position=position_jitter(width=0.3, height=0)
-  )
-
-###Plot 3
-![alt text](../02\ Visualizations/Plot3.png)
-
-ggplot() + 
-  coord_cartesian() + 
-  scale_x_discrete() +
-  scale_y_continuous() +
-  #facet_grid(PCLASS~SURVIVED, labeller=label_both) +
-  labs(title='Titanic') +
-  labs(x="SURVIVED", y=paste("FARE")) +
-  layer(data=subset(df,SEX != "null"), 
-        mapping=aes(x=SEX, y=as.numeric(as.character(FARE)), color=as.character(SURVIVED)), 
-        stat="identity", 
-        stat_params=list(), 
-        geom="point",
-        geom_params=list(), 
-        #position=position_identity()
-        position=position_jitter(width=0.3, height=0)
-  )
-
-###Plot 4
-![alt text](../02\ Visualizations/Plot4.png)
-
-ggplot() + 
-  coord_cartesian() + 
-  scale_x_discrete() +
-  scale_y_continuous() +
-  facet_grid(PCLASS~SURVIVED, labeller=label_both) +
-  labs(title='Titanic') +
-  labs(x="SURVIVED", y=paste("FARE")) +
-  layer(data=subset(df,SEX != "null"), 
-        mapping=aes(x=SEX, y=as.numeric(as.character(FARE)), color=SEX), 
-        stat="identity", 
-        stat_params=list(), 
-        geom="point",
-        geom_params=list(), 
-        #position=position_identity()
-        position=position_jitter(width=0.3, height=0)
-  )
-  
-###Plot 5
-![alt text](../02\ Visualizations/Plot5.png)
-
-ggplot() + 
-  coord_cartesian() + 
-  scale_x_discrete() +
-  scale_y_continuous() +
-  facet_grid(PCLASS~SURVIVED, labeller=label_both) +
-  labs(title='Titanic where age <= 10') +
-  labs(x="SURVIVED", y=paste("FARE")) +
-  layer(data=subset(df,SEX != "null" & as.numeric(as.character(AGE)) <= 10), 
-        mapping=aes(x=SEX, y=as.numeric(as.character(FARE)), color=SEX), 
-        stat="identity", 
-        stat_params=list(), 
-        geom="point",
-        geom_params=list(), 
-        #position=position_identity()
-        position=position_jitter(width=0.3, height=0)
-  )
