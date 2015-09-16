@@ -7,16 +7,10 @@ output: html_document
 
 
 ```{r}
+require("ggplot2")
 load("../01\ Data/DataFrame.RData")
 head(df)
 summary(df)
-
-```
-The SQL code did not change for any of the plots because it would be inefficient to reload the database each time.  I loaded the entire db the first time and changed the 'data' parameter of the 'layer' component of the 'ggplot' function to use only the relevant subsets of the data for each plot.
-
-###Unique Plot
-![alt text](../02\ Visualizations/Plot0.png)
-
 ggplot() + 
   coord_cartesian() + 
   scale_x_continuous() +
@@ -32,6 +26,14 @@ ggplot() +
         position=position_identity()
         #position=position_jitter(width=0.3, height=0)
   ) 
+
+```
+The SQL code did not change for any of the plots because it would be inefficient to reload the database each time.  I loaded the entire db the first time and changed the 'data' parameter of the 'layer' component of the 'ggplot' function to use only the relevant subsets of the data for each plot.
+
+###Unique Plot
+![alt text](../02\ Visualizations/Plot0.png)
+
+
 
 
 I thought there would be a correlation between ticket number and passenger id.  I was wrong.
